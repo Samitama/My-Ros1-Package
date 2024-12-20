@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+
+<launch>
+	<node name="publisher_node" pkg="my_ros_noetic" type="talker" output="screen" />
+
+	<node name="subscriber_node" pkg="my_ros_noetic" type="listener" output="screen" />
+</launch>
