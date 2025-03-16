@@ -73,7 +73,7 @@ find_package(catkin REQUIRED COMPONENTS
 #)
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(DEPENDENCIES std_msgs)
+#generate_messages(DEPENDENCIES std_msgs)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -140,6 +140,8 @@ add_executable(listener src/listener.cpp)
 add_executable(talker src/talker.cpp)
 add_executable(turtle_control src/turtle_control.cpp)
 add_executable(turtle_teleop_joy src/turtle_teleop_joy.cpp)
+add_executable(turtle_circle src/turtle_circle.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -151,13 +153,14 @@ add_executable(turtle_teleop_joy src/turtle_teleop_joy.cpp)
 add_dependencies(turtle_teleop_joy ${listener_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(listener ${listener_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(talker ${talker_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(turtle_control ${turtle_control_node_EXPORTED_TAGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(turtle_control ${turtle_control_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(turtle_circle ${turtle_cricle_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 ## Specify libraries to link a library or executable target against
 target_link_libraries(listener ${catkin_LIBRARIES})
 target_link_libraries(talker ${catkin_LIBRARIES})
 target_link_libraries(turtle_control ${catkin_LIBRARIES})
 target_link_libraries(turtle_teleop_joy ${catkin_LIBRARIES})
-
+target_link_libraries(turtle_circle ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
@@ -167,10 +170,15 @@ target_link_libraries(turtle_teleop_joy ${catkin_LIBRARIES})
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+   scripts/talker.py
+   scripts/listener.py
+   scripts/my_node.py
+   scripts/pose_sub.py
+   scripts/draw_circle.py
+   scripts/turtle_control.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
