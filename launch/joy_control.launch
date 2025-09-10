@@ -1,0 +1,7 @@
+<launch>
+	<node pkg="joy" type="joy_node" name="joystick" output="screen">
+		<param name="dev" value="/dev/input/js0"/>
+		<param name="deadzone" value="0.5"/>
+	</node>
+	<node pkg="my_ros_noetic" type="f710_teleop.py" name="f710_teleop" output="screen" />
+</launch>
