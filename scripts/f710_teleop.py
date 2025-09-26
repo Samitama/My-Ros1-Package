@@ -42,6 +42,7 @@ class F710Teleop:
 			rospy.loginfo("2. Vites")
 
 		self.vel_pub.publish(twist)
+		
 def main():
 	teleop = F710Teleop()
 	rospy.spin()
